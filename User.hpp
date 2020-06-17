@@ -30,6 +30,7 @@ private:
     string friendCount;
     string followerCount;
 public:
+    User()= default;;
     User(string univ, string id, string user, string tweet, string friends, string followers, string created){
         this->university = move(univ);
         this->userId = move(id);
@@ -44,10 +45,11 @@ public:
     string getUserId(){return this->userId;}
     string getUsername(){return this->username;}
     string getCreatedAt(){return this->createdAt;}
-    string getTweetNumber() const{return this->tweetNumber;}
-    string getFriendCount() const{return this->friendCount;}
-    string getFollowerCount() const{return this->followerCount;};
+    string getTweetNumber() {return this->tweetNumber;}
+    string getFriendCount() {return this->friendCount;}
+    string getFollowerCount() {return this->followerCount;};
 };
+
 
 
 #endif //TAREA3FEDA_USER_HPP

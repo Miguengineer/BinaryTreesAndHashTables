@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bits/stdc++.h>
 #include "BinaryTree.hpp"
 #include "User.hpp"
 
@@ -38,7 +39,11 @@ vector<User> readFile(){
 
 int main() {
     vector<User> users = readFile();
-    for (auto &it : users) cout << it.getUsername() << endl;
+    BinaryTree<User> bt;
+    bt.insert(users[0]);
+    node<User> *aux = bt.search("SantillanaLAB");
+    cout << aux->data.getTweetNumber() << endl;
+    //for (auto &it : users) cout << it.getUsername() << endl;
 
 
     return 0;
