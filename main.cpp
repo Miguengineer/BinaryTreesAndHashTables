@@ -41,7 +41,10 @@ int main() {
     vector<User> users = readFile();
     BinaryTree<User> bt;
     bt.insert(users[0]);
-    node<User> *aux = bt.search("SantillanaLAB");
+    bt.insert(users[1]);
+    bt.insert(users[2]);
+    bt.insert(users[3]);
+    node<User> *aux = bt.search("edu_hhs");
     cout << aux->data.getTweetNumber() << endl;
     //for (auto &it : users) cout << it.getUsername() << endl;
 

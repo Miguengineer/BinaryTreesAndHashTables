@@ -119,8 +119,8 @@ public:
             // Si lo encontró, retorna
             if ((aux->data).getUsername() == x) return aux;
             // Si no, se va hacia un lado o al otro
-            //else if (aux->data < x) aux = aux->right;
-            //else aux = aux->left;
+            else if ((aux->data).getUsername() < x) aux = aux->right;
+            else aux = aux->left;
         }
         // Salió del while, implica no pudo encontrarlo
         return NULL;
