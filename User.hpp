@@ -26,11 +26,11 @@ private:
     string userId;
     string username;
     string createdAt;
-    int tweetNumber;
-    int friendCount;
-    int followerCount;
+    string tweetNumber;
+    string friendCount;
+    string followerCount;
 public:
-    User(string univ, string id, string user, string created, int tweet, int friends, int followers){
+    User(string univ, string id, string user, string tweet, string friends, string followers, string created){
         this->university = move(univ);
         this->userId = move(id);
         this->username = move(user);
@@ -39,14 +39,14 @@ public:
         this->friendCount = friends;
         this->followerCount = followers;
     }
+    // Getter methods
     string getUniversity(){return this->university;}
     string getUserId(){return this->userId;}
     string getUsername(){return this->username;}
     string getCreatedAt(){return this->createdAt;}
-    int getTweetNumber() const{return this->tweetNumber;}
-    int getFriendCount() const{return this->friendCount;}
-    int getFollowerCount() const{return this->followerCount;};
-
+    string getTweetNumber() const{return this->tweetNumber;}
+    string getFriendCount() const{return this->friendCount;}
+    string getFollowerCount() const{return this->followerCount;};
 };
 
 
