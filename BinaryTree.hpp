@@ -5,12 +5,13 @@
 #ifndef TAREA3FEDA_BINARYTREE_HPP
 #define TAREA3FEDA_BINARYTREE_HPP
 #include <bits/stdc++.h>
+#include "User.hpp"
+
 using namespace std;
 
 template <typename dataType>
 struct node{
     dataType data;
-    int key;
     node *right;
     node *left;
 };
@@ -24,7 +25,7 @@ public:
     BinaryTree(){
         size = 0;
         root = NULL;
-        stringKey = true;
+        stringKey = false;
     }
 
     void insert(dataType object){
@@ -77,7 +78,6 @@ public:
                 // Inicializa los children a null
                 root->left = NULL;
                 root->right = NULL;
-                root->key = 15;
             }
                 // Tamaño != 0, al menos hay una raíz
             else{
@@ -88,7 +88,7 @@ public:
                 // Comienza a buscar
                 while(x != NULL){
                     y = x;
-                    if ((x->data).getUserId()> object.getUserId()){
+                    if (stod((x->data).getUserId())> stod(object.getUserId())){
                         x = x->left;
                     }
                     else{
@@ -102,7 +102,7 @@ public:
                 new_node->left = NULL;
                 new_node->right = NULL;
                 // Revisa dónde acomodar al nuevo nodo
-                if (object.getUserId() < (y->data).getUserId()) y->left = new_node;
+                if (stod(object.getUserId()) < stod((y->data).getUserId()))  y->left = new_node;
                 else y->right = new_node;
             }
             // Incrementa el tamaño (se insertó un elemento)
@@ -112,19 +112,38 @@ public:
 
     }
     node<dataType> * search(string x){
-        // Comienza a buscar desde la raíz
-        node<dataType> *aux = root;
-        // Comienza a buscar
-        while(aux != NULL){
-            // Si lo encontró, retorna
-            if ((aux->data).getUsername() == x) return aux;
-            // Si no, se va hacia un lado o al otro
-            else if ((aux->data).getUsername() < x) aux = aux->right;
-            else aux = aux->left;
+        cout << "NODE: " << sizeof(node<User>);
+        if (stringKey){
+            // Comienza a buscar desde la raíz
+            node<dataType> *aux = root;
+            // Comienza a buscar
+            while(aux != NULL){
+                // Si lo encontró, retorna
+                if ((aux->data).getUsername() == x) return aux;
+                    // Si no, se va hacia un lado o al otro
+                else if ((aux->data).getUsername() < x) aux = aux->right;
+                else aux = aux->left;
+            }
+            // Salió del while, implica no pudo encontrarlo
+            return NULL;
         }
-        // Salió del while, implica no pudo encontrarlo
-        return NULL;
-    };
+        else{
+            // Comienza a buscar desde la raíz
+            node<dataType> *aux = root;
+            // Comienza a buscar
+            while(aux != NULL){
+                // Si lo encontró, retorna
+                if (stod((aux->data).getUserId()) == stod(x)) return aux;
+                // Si no, se va hacia un lado o al otro
+                else if (stod((aux->data).getUserId()) < stod(x)) aux = aux->right;
+                else aux = aux->left;
+            }
+            // Salió del while, implica no pudo encontrarlo
+            return NULL;
+        }
+
+        }
+
 
 };
 

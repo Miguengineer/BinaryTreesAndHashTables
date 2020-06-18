@@ -3,4 +3,4 @@ project(Tarea3FEDA)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Tarea3FEDA main.cpp Hash.cpp Hash.h BinaryTree.hpp User.hpp)
+add_executable(Tarea3FEDA main.cpp Hash.cpp Hash.h BinaryTree.hpp User.hpp HashTableOpen.hpp)

@@ -37,16 +37,137 @@ vector<User> readFile(){
 }
 
 
-int main() {
+/**
+ * Realiza una serie de tests sobre la estructura de datos de BinaryTree, realiza medición de tiempo y reporta
+ */
+
+void test_cases(){
+    // Lee de memoria los datos
     vector<User> users = readFile();
-    BinaryTree<User> bt;
-    bt.insert(users[0]);
-    bt.insert(users[1]);
-    bt.insert(users[2]);
-    bt.insert(users[3]);
-    node<User> *aux = bt.search("edu_hhs");
-    cout << aux->data.getTweetNumber() << endl;
-    //for (auto &it : users) cout << it.getUsername() << endl;
+    map<int, double> test_times;
+    // Crea el árbol sobre el que testear
+    BinaryTree<User> bt1;
+    // Inserta 1000 usuarios y mide tiempo
+    auto start = std::chrono::system_clock::now();
+    for (int i = 0; i < 1000; i++){
+        bt1.insert(users[i]);
+    }
+    auto end = std::chrono::system_clock::now();
+    double time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(1000, time));
+
+    start = std::chrono::system_clock::now();
+    node<User> *aux = bt1.search("879120276054835666");
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+
+    // Crea nuevo árbol
+    BinaryTree<User> bt4;
+    // Inserta 5000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 5000; i++){
+        bt4.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(5000, time));
+
+    start = std::chrono::system_clock::now();
+    aux = bt4.search("2342343243223");
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+
+    // Crea nuevo árbol
+    BinaryTree<User> bt2;
+    // Inserta 10000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 10000; i++){
+        bt2.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(10000, time));
+
+
+    start = std::chrono::system_clock::now();
+    aux = bt2.search("2342343243223");
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+    // Crea nuevo árbol
+    BinaryTree<User> bt3;
+    // Inserta 15000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 15000; i++){
+        bt3.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(15000, time));
+
+    start = std::chrono::system_clock::now();
+    aux = bt3.search("2342343243223");
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+
+
+
+
+    // Crea nuevo árbol
+    BinaryTree<User> bt5;
+    // Inserta 20000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 20000; i++){
+        bt5.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(20000, time));
+
+
+    start = std::chrono::system_clock::now();
+    aux = bt5.search("2342343243223");
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+    cout << "INSERTION TIMES: " << endl;
+
+    cout << test_times[1000] << endl;
+    cout << test_times[5000] << endl;
+    cout << test_times[10000] << endl;
+    cout << test_times[15000] << endl;
+    cout << test_times[20000] << endl;
+
+
+}
+
+
+int main() {
+
+
+
+
+    // test_cases();
+
+
 
 
     return 0;
