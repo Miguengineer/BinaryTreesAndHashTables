@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include "BinaryTree.hpp"
 #include "User.hpp"
+#include "HashTableOpen.hpp"
 
 using namespace std;
 
@@ -42,6 +43,8 @@ vector<User> readFile(){
  */
 
 void test_cases(){
+
+
     // Lee de memoria los datos
     vector<User> users = readFile();
     map<int, double> test_times;
@@ -159,14 +162,125 @@ void test_cases(){
 
 }
 
+void test_hash_open(int buckets){
+    // Lee de memoria los datos
+    vector<User> users = readFile();
+    map<int, double> test_times;
+    // Crea la tabla hash sobre que testear
+    HashTableOpen<User> ht1 (buckets);
+    // Inserta 1000 usuarios y mide tiempo
+    auto start = std::chrono::system_clock::now();
+    for (int i = 0; i < 1000; i++){
+        ht1.insert(users[i]);
+    }
+    auto end = std::chrono::system_clock::now();
+    double time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(1000, time));
+
+    start = std::chrono::system_clock::now();
+    User user = ht1.search(users[100]);
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+
+    // Crea nueva hash table
+    HashTableOpen<User> ht2(buckets);
+    // Inserta 5000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 5000; i++){
+        ht2.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(5000, time));
+
+    start = std::chrono::system_clock::now();
+    ht2.search(users[100]);
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+
+    // Crea nuevo árbol
+    HashTableOpen<User> ht3(buckets);
+    // Inserta 10000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 10000; i++){
+        ht3.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(10000, time));
+
+
+    start = std::chrono::system_clock::now();
+    ht3.search(users[100]);
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+    // Crea nueva hashtable
+    HashTableOpen<User> ht4(buckets);
+    // Inserta 15000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 15000; i++){
+        ht4.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(15000, time));
+
+    start = std::chrono::system_clock::now();
+    ht4.search(users[100]);
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+
+
+
+
+    // Crea nueva hashtable
+    HashTableOpen<User> ht5(buckets);
+    // Inserta 20000 usuarios y mide tiempo
+    start = std::chrono::system_clock::now();
+    for (int i = 0; i < 20000; i++){
+        ht5.insert(users[i]);
+    }
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    // Inserta el tiempo en el map
+    test_times.insert(make_pair(20000, time));
+
+
+    start = std::chrono::system_clock::now();
+    ht5.search(users[100]);
+    end = std::chrono::system_clock::now();
+    time = chrono::duration<double>(end - start).count();
+    cout.precision(10);
+    cout << fixed <<  time << endl;
+
+    cout << "INSERTION TIMES: " << endl;
+
+    cout << test_times[1000] << endl;
+    cout << test_times[5000] << endl;
+    cout << test_times[10000] << endl;
+    cout << test_times[15000] << endl;
+    cout << test_times[20000] << endl;
+}
+
 
 int main() {
-
-
-
-
-    // test_cases();
-
+    test_hash_open(21070);
 
 
 
