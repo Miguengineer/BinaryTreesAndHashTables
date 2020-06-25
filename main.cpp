@@ -3,6 +3,7 @@
 #include "BinaryTree.hpp"
 #include "User.hpp"
 #include "HashTableOpen.hpp"
+#include "HashTableOpenAddressing.hpp"
 
 using namespace std;
 
@@ -161,13 +162,16 @@ void test_cases(){
 
 
 }
-
+/**
+ * Se hace un testeo de la hash table con open addressing, imprime los resultados en pantalla
+ * @param buckets: cantidad de buckets que se van a testear en la hash table
+ */
 void test_hash_open(int buckets){
     // Lee de memoria los datos
     vector<User> users = readFile();
     map<int, double> test_times;
     // Crea la tabla hash sobre que testear
-    HashTableOpen<User> ht1 (buckets);
+    HashTableOpenAddressing<User> ht1 (buckets);
     // Inserta 1000 usuarios y mide tiempo
     auto start = std::chrono::system_clock::now();
     for (int i = 0; i < 1000; i++){
@@ -187,7 +191,7 @@ void test_hash_open(int buckets){
 
 
     // Crea nueva hash table
-    HashTableOpen<User> ht2(buckets);
+    HashTableOpenAddressing<User> ht2(buckets);
     // Inserta 5000 usuarios y mide tiempo
     start = std::chrono::system_clock::now();
     for (int i = 0; i < 5000; i++){
@@ -207,7 +211,7 @@ void test_hash_open(int buckets){
 
 
     // Crea nuevo árbol
-    HashTableOpen<User> ht3(buckets);
+    HashTableOpenAddressing<User> ht3(buckets);
     // Inserta 10000 usuarios y mide tiempo
     start = std::chrono::system_clock::now();
     for (int i = 0; i < 10000; i++){
@@ -227,7 +231,7 @@ void test_hash_open(int buckets){
     cout << fixed <<  time << endl;
 
     // Crea nueva hashtable
-    HashTableOpen<User> ht4(buckets);
+    HashTableOpenAddressing<User> ht4(buckets);
     // Inserta 15000 usuarios y mide tiempo
     start = std::chrono::system_clock::now();
     for (int i = 0; i < 15000; i++){
@@ -237,7 +241,6 @@ void test_hash_open(int buckets){
     time = chrono::duration<double>(end - start).count();
     // Inserta el tiempo en el map
     test_times.insert(make_pair(15000, time));
-
     start = std::chrono::system_clock::now();
     ht4.search(users[100]);
     end = std::chrono::system_clock::now();
@@ -250,7 +253,7 @@ void test_hash_open(int buckets){
 
 
     // Crea nueva hashtable
-    HashTableOpen<User> ht5(buckets);
+    HashTableOpenAddressing<User> ht5(buckets);
     // Inserta 20000 usuarios y mide tiempo
     start = std::chrono::system_clock::now();
     for (int i = 0; i < 20000; i++){
@@ -280,9 +283,7 @@ void test_hash_open(int buckets){
 
 
 int main() {
-    test_hash_open(21070);
-
-
+    // test_hash_open(5000);
 
     return 0;
 }
